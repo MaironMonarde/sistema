@@ -1,11 +1,26 @@
-Mostrar la lista de empleados
-@if(Session::has('mensaje'))
-{{Session::get('mensaje')}}
+@extends('layouts.app')
+@section('content')
+<div class="container">
 
-@endif
+    @if(Session::has('mensaje'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+    {{Session::get('mensaje')}}
+        <button type="button" class= "btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
 
-<a href= "{{url('empleado/create')}}"> Registrar nuevo empleado</a>
-<table class="table table-secondary">
+        </button>
+
+</div>
+
+    @endif
+
+
+
+
+<a href= "{{url('empleado/create')}}" class="btn btn-success"> Registrar nuevo empleado</a>
+<br/>
+<br/>
+<table class="table table-light">
     <thead class="thead-info">
         <tr>
             <th>#</th>
@@ -23,7 +38,7 @@ Mostrar la lista de empleados
             <td>{{$empleado->id}}</td>
 
             <td>
-                <img src="{{asset('storage').'/'.$empleado->Foto }}" width="100" alt="">
+                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$empleado->Foto }}" width="100" alt="">
             
             </td>
 
@@ -33,16 +48,16 @@ Mostrar la lista de empleados
             <td>{{$empleado->ApellidoMaterno}}</td>
             <td>{{$empleado->Correo}}</td>
             <td>
-                <a href="{{url('/empleado/'.$empleado->id.'/edit')}}">
+                <a href="{{url('/empleado/'.$empleado->id.'/edit')}}" class="btn btn-warning">
                 Editar 
                 </a>
 
                 | 
 
-                <form action="{{url('/empleado/'.$empleado->id)}}" method="post">
+                <form action="{{url('/empleado/'.$empleado->id)}}" class="d-inline" method="post">
                 @csrf  
                 {{method_field('delete')}}  
-                <input type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
+                <input class ="btn btn-danger " type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
                 
                 </form>
 
@@ -53,3 +68,6 @@ Mostrar la lista de empleados
         @endforeach
     </tbody>
 </table>
+{!!$empleados->links() !!}
+</div>
+@endsection
