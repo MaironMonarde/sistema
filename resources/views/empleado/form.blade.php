@@ -1,8 +1,7 @@
-
+<!--Barra de notificacion cuando se crea, edita o eliminan datos-->
 <h1>{{$modo}} empleado </h1>
 
-@if(count($errors)>0)
-    
+@if(count($errors)>0)  
 <div class="alert alert-danger" role="alert">
     <ul>
     @foreach($errors->all() as $error)
@@ -10,18 +9,18 @@
 @endforeach
 </ul>
 </div>
-
-
 @endif
+<!--Barra de notificacion cuando se crea, edita o eliminan datos-->
 
 
-<div class="form-group">
-
-<label for="Nombre"> Nombre </label>
+<!--campos para rellenar datos para crear y editar empleados-->
+                                                                          <!--En caso de edicion, conserva los datos-->
+<div class="form-group">                                                  <!--en el servidor para que se encuentren-->
+<label for="Nombre"> Nombre </label>                                      <!--visibles al momento de cambiarlos-->
 <input type="text" class="form-control" name="Nombre" value="{{ isset ($empleado->Nombre) ?$empleado->Nombre:old('Nombre') }}" id="Nombre">
-</div>
-
-<div class="form-group">
+</div>                                                                                           <!--old se refiere a que si estabas-->
+                                                                                                 <!--ingresando datos y refrescaste-->                                       
+<div class="form-group">                                                                         <!--la pagina estos se conserven-->
 <label for="ApellidoPaterno"> Apellido Paterno </label>
 <input type="text" class="form-control" name="ApellidoPaterno" value="{{ isset($empleado->ApellidoPaterno) ?$empleado->ApellidoPaterno:old('ApellidoPaterno') }}" id="ApellidoPaterno">
 </div>
@@ -43,8 +42,8 @@
 @endif
 <input type="file" class="form-control" name="Foto" value="" id="Foto">
 <br>
-
 </div>
+<!--campos para rellenar datos para crear y editar empleados-->
 
 <input class="btn btn-success" type="submit" value="{{$modo}} datos">
 <a class="btn btn-primary" href= "{{url('empleado/')}}"> Regresar </a>

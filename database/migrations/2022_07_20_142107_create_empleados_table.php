@@ -13,6 +13,7 @@ class CreateEmpleadosTable extends Migration
      */
     public function up()
     {
+        //CRUD EMPLEADO CON SUS CAMPOS//
 
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
